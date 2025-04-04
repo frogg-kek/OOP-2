@@ -79,8 +79,7 @@ int main() {
                 studentai = nuskaitytiStudentus(failuPavadinimai[failoPasirinkimas - 1], skaitymoLaikas);
                 std::cout << "Failo skaitymas užtruko: " << skaitymoLaikas << " sekundžių." << std::endl;
                 rikiuotiStudentusPagalPasirinkima(studentai);
-
-                pasirinktIšvestiesBuda(studentai);
+               // pasirinktIsvestiesBuda(studentai);
             } else {
                 std::cout << "Neteisingas pasirinkimas!" << std::endl;
                 return 1;
@@ -114,14 +113,6 @@ int main() {
                         std::cout << "Neteisingas pasirinkimas!" << std::endl;
                         return 1;
                 }
-                /*
-                auto start = std::chrono::high_resolution_clock::now();
-                atliktiLaikoTestusSuFailais(failugen);
-
-                auto end = std::chrono::high_resolution_clock::now();
-                std::chrono::duration<double> duration = end - start;
-                std::cout << "Visos programos vykdymo laikas: " << duration.count() << " sekundžių." << std::endl;
-                */
                 } else {
                 std::cout << "Nėra sugeneruotų failų testavimui." << std::endl;
             }
