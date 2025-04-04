@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
 
 class Student {
 private:
@@ -13,48 +12,41 @@ private:
     int egzaminas;
 
 public:
-    // Constructors
+    // Konstruktoriai
     Student();
-    Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd_balai, int egzaminas);
-    Student(const Student& other); // Copy constructor
-    Student(Student&& other) noexcept; // Move constructor
+    Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas);
 
-    // Destructor
-    ~Student();
-
-    // Getters
+    // Getteriai
     std::string getVardas() const;
     std::string getPavarde() const;
     std::vector<int> getNdBalai() const;
     int getEgzaminas() const;
 
-    // Setters
+    // Setteriai
     void setVardas(const std::string& vardas);
     void setPavarde(const std::string& pavarde);
-    void setNdBalai(const std::vector<int>& nd_balai);
+    void setNdBalai(const std::vector<int>& nd);
     void setEgzaminas(int egzaminas);
 
-    // Utility functions
+    // Kitos funkcijos
     double skaiciuotiVidurki() const;
     double skaiciuotiMediana() const;
     double galutinisPazymys(bool naudotiVidurki = true) const;
-
-    // Static functions for sorting
-    static bool palygintiPagalVarda(const Student& a, const Student& b);
-    static bool palygintiPagalPavarde(const Student& a, const Student& b);
-    static bool palygintiPagalVidurkiAsc(const Student& a, const Student& b);
-    static bool palygintiPagalVidurkiDesc(const Student& a, const Student& b);
-    static bool palygintiPagalMedianaAsc(const Student& a, const Student& b);
-    static bool palygintiPagalMedianaDesc(const Student& a, const Student& b);
 };
 
-// Functions for generating and managing students
+// Funkcijos generavimui ir įvedimui (naudos viešus metodus)
 Student generuotiStudenta();
 void generuotiPazymius(Student& studentas);
 std::vector<Student> generuotiStudentus(int kiekis);
 std::vector<Student> ivestiStudentus();
 
-// Sorting functions
+// Rikiavimo funkcijos (naudojasi getteriais)
+bool palygintiPagalVarda(const Student& a, const Student& b);
+bool palygintiPagalPavarde(const Student& a, const Student& b);
+bool palygintiPagalVidurkiAsc(const Student& a, const Student& b);
+bool palygintiPagalVidurkiDesc(const Student& a, const Student& b);
+bool palygintiPagalMedianaAsc(const Student& a, const Student& b);
+bool palygintiPagalMedianaDesc(const Student& a, const Student& b);
 void rikiuotiStudentus(std::vector<Student>& studentai, char pasirinkimas, char tvarka = 'a');
 void rikiuotiStudentusPagalPasirinkima(std::vector<Student>& studentai);
 

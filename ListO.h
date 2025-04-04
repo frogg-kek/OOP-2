@@ -5,6 +5,6 @@
 #include "studentas.h"
 
 void rusiotiStudentusISFailusList(const std::string& failas, std::list<std::string>& failugenList);
-void rikiuotiStudentusPriesSkirtymaList(std::list<Student>& studentai);
+void rikiuotiStudentusPriesSkirstymaList(std::list<Student>& studentai);
 
 #endif
