@@ -21,9 +21,9 @@ double skaiciuotiMediana(std::vector<int> pazymiai) {
 
 double galutinisPazymys(const Student& studentas, bool naudotiVidurki) {
     double ndRezultatas = naudotiVidurki ? 
-                          skaiciuotiVidurki(studentas.nd_balai) : 
-                          skaiciuotiMediana(studentas.nd_balai);
-    return 0.4 * ndRezultatas + 0.6 * studentas.egzaminas;
+                          skaiciuotiVidurki(studentas.getNdBalai()) : 
+                          skaiciuotiMediana(studentas.getNdBalai());
+    return 0.4 * ndRezultatas + 0.6 * studentas.getEgzaminas();
 }
 
 // Generavimo funkcijos
@@ -36,8 +36,9 @@ Student generuotiStudenta() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(0, 4);
 
-    studentas.vardas = vardai[dist(gen)];
-    studentas.pavarde = pavardes[dist(gen)];
+    studentas.setVardas(vardai[dist(gen)]);
+    studentas.setPavarde(pavardes[dist(gen)]);
+    generuotiPazymius(studentas);
     return studentas;
 }
 
@@ -48,19 +49,18 @@ void generuotiPazymius(Student& studentas) {
     std::uniform_int_distribution<> nd_dist(1, 10); // Bent 1 ND pažymys
 
     int nd_kiekis = nd_dist(gen);
-    studentas.nd_balai.clear();
+    std::vector<int> pazymiai;
     for (int i = 0; i < nd_kiekis; i++) {
-        studentas.nd_balai.push_back(dist(gen));
+        pazymiai.push_back(dist(gen));
     }
-    studentas.egzaminas = dist(gen);
+    studentas.setNdBalai(pazymiai);
+    studentas.setEgzaminas(dist(gen));
 }
 
 std::vector<Student> generuotiStudentus(int kiekis) {
     std::vector<Student> studentai;
     for (int i = 0; i < kiekis; i++) {
-        Student studentas = generuotiStudenta();
-        generuotiPazymius(studentas);
-        studentai.push_back(studentas);
+        studentai.push_back(generuotiStudenta());
     }
     return studentai;
 }
@@ -72,20 +72,22 @@ std::vector<Student> ivestiStudentus() {
     do {
         Student studentas;
 
-        
+        // Vardas
         while (true) {
             try {
+                std::string vardas;
                 std::cout << "\nĮveskite studento vardą: ";
-                std::cin >> studentas.vardas;
+                std::cin >> vardas;
 
                 if (std::cin.fail()) {
                     throw std::runtime_error("Netinkama įvestis!");
                 }
-                if (!tikrintiRaides(studentas.vardas)) {
+                if (!tikrintiRaides(vardas)) {
                     throw std::runtime_error("Vardas turi būti sudarytas tik iš raidžių!");
                 }
 
-                break;  // Teisinga įvestis – išeiname iš ciklo
+                studentas.setVardas(vardas);
+                break;
             } catch (const std::exception& e) {
                 std::cerr << "Klaida įvedant vardą: " << e.what() << " Bandykite dar kartą.\n";
                 std::cin.clear();
@@ -93,17 +95,19 @@ std::vector<Student> ivestiStudentus() {
             }
         }
 
-       
+        // Pavardė
         while (true) {
             try {
+                std::string pavarde;
                 std::cout << "Įveskite studento pavardę: ";
-                std::cin >> studentas.pavarde;
+                std::cin >> pavarde;
 
-                if (!tikrintiRaides(studentas.pavarde)) {
+                if (!tikrintiRaides(pavarde)) {
                     throw std::runtime_error("Pavardė turi būti sudaryta tik iš raidžių!");
                 }
 
-                break;  // Teisinga įvestis – išeiname iš ciklo
+                studentas.setPavarde(pavarde);
+                break;
             } catch (const std::exception& e) {
                 std::cerr << "Klaida įvedant pavardę: " << e.what() << " Bandykite dar kartą.\n";
                 std::cin.clear();
@@ -111,12 +115,12 @@ std::vector<Student> ivestiStudentus() {
             }
         }
 
-        
+        // Namų darbų pažymiai
         while (true) {
             try {
                 std::cout << "Įveskite namų darbų pažymius (baigti įvesdami ne skaičių): ";
                 int balas;
-                studentas.nd_balai.clear();
+                std::vector<int> pazymiai;
                 bool validInput = false;
 
                 while (std::cin >> balas) {
@@ -126,7 +130,7 @@ std::vector<Student> ivestiStudentus() {
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         continue;
                     }
-                    studentas.nd_balai.push_back(balas);
+                    pazymiai.push_back(balas);
                     validInput = true;
                 }
 
@@ -134,6 +138,7 @@ std::vector<Student> ivestiStudentus() {
                     throw std::runtime_error("Nenurodyti namų darbų pažymiai!");
                 }
 
+                studentas.setNdBalai(pazymiai);
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 break;
@@ -144,16 +149,18 @@ std::vector<Student> ivestiStudentus() {
             }
         }
 
-      
+        // Egzamino balas
         while (true) {
             try {
+                int egzaminas;
                 std::cout << "Įveskite egzamino balą (nuo 0 iki 10): ";
-                std::cin >> studentas.egzaminas;
+                std::cin >> egzaminas;
 
-                if (std::cin.fail() || studentas.egzaminas < 0 || studentas.egzaminas > 10) {
+                if (std::cin.fail() || egzaminas < 0 || egzaminas > 10) {
                     throw std::runtime_error("Egzamino balas turi būti nuo 0 iki 10!");
                 }
 
+                studentas.setEgzaminas(egzaminas);
                 break;
             } catch (const std::exception& e) {
                 std::cerr << "Klaida įvedant egzamino balą: " << e.what() << " Bandykite dar kartą.\n";
@@ -172,50 +179,26 @@ std::vector<Student> ivestiStudentus() {
 }
 
 // Rikiavimo funkcijos
-bool palygintiPagalVarda(const Student& a, const Student& b) {
-    return a.vardas < b.vardas;
-}
-
-bool palygintiPagalPavarde(const Student& a, const Student& b) {
-    return a.pavarde < b.pavarde;
-}
-
-bool palygintiPagalVidurkiAsc(const Student& a, const Student& b) {
-    return galutinisPazymys(a, true) < galutinisPazymys(b, true);
-}
-
-bool palygintiPagalVidurkiDesc(const Student& a, const Student& b) {
-    return galutinisPazymys(a, true) > galutinisPazymys(b, true);
-}
-
-bool palygintiPagalMedianaAsc(const Student& a, const Student& b) {
-    return galutinisPazymys(a, false) < galutinisPazymys(b, false);
-}
-
-bool palygintiPagalMedianaDesc(const Student& a, const Student& b) {
-    return galutinisPazymys(a, false) > galutinisPazymys(b, false);
-}
-
 void rikiuotiStudentus(std::vector<Student>& studentai, char pasirinkimas, char tvarka) {
     switch (pasirinkimas) {
         case '1':
-            std::sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
+            std::sort(studentai.begin(), studentai.end(), Student::palygintiPagalVarda);
             break;
         case '2':
-            std::sort(studentai.begin(), studentai.end(), palygintiPagalPavarde);
+            std::sort(studentai.begin(), studentai.end(), Student::palygintiPagalPavarde);
             break;
         case '3':
             if (tvarka == 'a' || tvarka == 'A') {
-                std::sort(studentai.begin(), studentai.end(), palygintiPagalVidurkiAsc);
+                std::sort(studentai.begin(), studentai.end(), Student::palygintiPagalVidurkiAsc);
             } else {
-                std::sort(studentai.begin(), studentai.end(), palygintiPagalVidurkiDesc);
+                std::sort(studentai.begin(), studentai.end(), Student::palygintiPagalVidurkiDesc);
             }
             break;
         case '4':
             if (tvarka == 'a' || tvarka == 'A') {
-                std::sort(studentai.begin(), studentai.end(), palygintiPagalMedianaAsc);
+                std::sort(studentai.begin(), studentai.end(), Student::palygintiPagalMedianaAsc);
             } else {
-                std::sort(studentai.begin(), studentai.end(), palygintiPagalMedianaDesc);
+                std::sort(studentai.begin(), studentai.end(), Student::palygintiPagalMedianaDesc);
             }
             break;
         default:
@@ -225,8 +208,6 @@ void rikiuotiStudentus(std::vector<Student>& studentai, char pasirinkimas, char 
 }
 
 void rikiuotiStudentusPagalPasirinkima(std::vector<Student>& studentai) {
-   
-    
     char rikiavimoPasirinkimas;
     std::cout << "Pasirinkite rikiavimo būdą:\n";
     std::cout << "1. Pagal vardą\n";

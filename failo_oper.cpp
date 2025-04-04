@@ -1,11 +1,15 @@
-// cia funkcijos susijusios su failu operacijomis
+// Funkcijos susijusios su failų operacijomis
 #include "failo_oper.h"
+#include "studentas.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <iomanip>
 #include <chrono>
+#include <vector>
+#include <algorithm>
 
+// Funkcija studentų nuskaitymui iš failo
 std::vector<Student> nuskaitytiStudentus(const std::string& failoPavadinimas, double& skaitymoLaikas) {
     auto start = std::chrono::high_resolution_clock::now();
     std::vector<Student> studentai;
@@ -16,25 +20,25 @@ std::vector<Student> nuskaitytiStudentus(const std::string& failoPavadinimas, do
             throw std::runtime_error("Nepavyko atidaryti failo: " + failoPavadinimas);
         }
 
-        std::stringstream buffer;
-        buffer << inFile.rdbuf();
-        inFile.close();
-
         std::string line;
         // Praleisti antraštės eilutę
-        if (!std::getline(buffer, line)) {
+        if (!std::getline(inFile, line)) {
             throw std::runtime_error("Failas tuščias arba sugadintas: " + failoPavadinimas);
         }
 
-        while (std::getline(buffer, line)) {
+        while (std::getline(inFile, line)) {
             Student studentas;
             std::stringstream ss(line);
-            ss >> studentas.vardas >> studentas.pavarde;
+            std::string vardas, pavarde;
+            ss >> vardas >> pavarde;
 
             if (ss.fail()) {
                 std::cerr << "Klaida skaitant studento duomenis eilutėje: " << line << std::endl;
                 continue;  // Pereiname prie kitos eilutės
             }
+
+            studentas.setVardas(vardas);
+            studentas.setPavarde(pavarde);
 
             int pazymys;
             std::vector<int> pazymiai;
@@ -43,12 +47,12 @@ std::vector<Student> nuskaitytiStudentus(const std::string& failoPavadinimas, do
             }
 
             if (pazymiai.empty()) {
-                std::cerr << "Klaida: Studentas " << studentas.vardas << " " << studentas.pavarde << " neturi pažymių." << std::endl;
+                std::cerr << "Klaida: Studentas " << vardas << " " << pavarde << " neturi pažymių." << std::endl;
                 continue;  // Pereiname prie kitos eilutės
             }
 
-            studentas.nd_balai = std::vector<int>(pazymiai.begin(), pazymiai.end() - 1);
-            studentas.egzaminas = pazymiai.back();
+            studentas.setNdBalai(std::vector<int>(pazymiai.begin(), pazymiai.end() - 1));
+            studentas.setEgzaminas(pazymiai.back());
             studentai.push_back(studentas);
         }
 
@@ -62,23 +66,24 @@ std::vector<Student> nuskaitytiStudentus(const std::string& failoPavadinimas, do
     return studentai;
 }
 
+// Funkcija rezultatų spausdinimui į ekraną
 void spausdintiRezultatus(const std::vector<Student>& studentai) {
     std::cout << "\nVardas        Pavardė       Galutinis (Vidurkis)     Galutinis (Mediana)" << std::endl;
     std::cout << "--------------------------------------------------------------------------" << std::endl;
 
     for (const auto& studentas : studentai) {
-        double galutinisVidurkis = galutinisPazymys(studentas, true);
-        double galutinisMediana = galutinisPazymys(studentas, false);
+        double galutinisVidurkis = studentas.galutinisPazymys(true);
+        double galutinisMediana = studentas.galutinisPazymys(false);
 
-        std::cout << std::left << std::setw(12) << studentas.vardas
-                  << std::setw(14) << studentas.pavarde
+        std::cout << std::left << std::setw(12) << studentas.getVardas()
+                  << std::setw(14) << studentas.getPavarde()
                   << std::fixed << std::setprecision(2) << std::setw(25) << galutinisVidurkis
                   << galutinisMediana << std::endl;
     }
 }
 
+// Funkcija rezultatų rašymui į failą
 void rasytiRezultatus(const std::string& failoPavadinimas, const std::vector<Student>& studentai) {
-
     std::ofstream outFile(failoPavadinimas);
     if (outFile.is_open()) {
         outFile << std::left << std::setw(20) << "Vardas" 
@@ -88,11 +93,11 @@ void rasytiRezultatus(const std::string& failoPavadinimas, const std::vector<Stu
         outFile << "-------------------------------------------------------------------------------" << std::endl;
         
         for (const auto& studentas : studentai) {
-            double galutinisVidurkis = galutinisPazymys(studentas, true);
-            double galutinisMediana = galutinisPazymys(studentas, false);
+            double galutinisVidurkis = studentas.galutinisPazymys(true);
+            double galutinisMediana = studentas.galutinisPazymys(false);
 
-            outFile << std::left << std::setw(20) << studentas.vardas
-                    << std::setw(20) << studentas.pavarde
+            outFile << std::left << std::setw(20) << studentas.getVardas()
+                    << std::setw(20) << studentas.getPavarde()
                     << std::fixed << std::setprecision(2) << std::setw(30) << galutinisVidurkis
                     << galutinisMediana << std::endl;
         }
@@ -102,7 +107,8 @@ void rasytiRezultatus(const std::string& failoPavadinimas, const std::vector<Stu
     }  
 }
 
-void pasirinktIšvestiesBuda(const std::vector<Student>& studentai) {
+// Funkcija rezultatų išvesties būdo pasirinkimui
+void pasirinktiIsvestiesBuda(const std::vector<Student>& studentai) {
     char outputChoice;
     std::cout << "Ar norite spausdinti rezultatus į ekraną ar į failą? (e/f): ";
     std::cin >> outputChoice;
