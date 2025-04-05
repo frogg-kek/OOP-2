@@ -21,8 +21,8 @@
 
 |        FAILAS          |       VECTOR(STRUCT) #3ST       |
 |------------------------|---------------------------------|
-| Gstudentai100000.txt   |                      |   
-| Gstudentai1000000.txt  |                      |   
+| Gstudentai100000.txt   |           0.193232              |   
+| Gstudentai1000000.txt  |           1.71543               |   
 
 
 
@@ -37,8 +37,8 @@
 
 |        FAILAS          |       VECTOR(STRUCT) #3ST       |
 |------------------------|---------------------------------|
-| Gstudentai100000.txt   |                      |   
-| Gstudentai1000000.txt  |                      |   
+| Gstudentai100000.txt   |            0.194721             |   
+| Gstudentai1000000.txt  |            1.68131              |   
 
 
 
