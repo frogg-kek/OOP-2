@@ -47,7 +47,7 @@
 | Gstudentai100000.txt   |           0.133387              |   
 | Gstudentai1000000.txt  |           1.28121               | 
 
-
+## Executable failo dydis `213K`
 
 
 ## Testavimo aplinka
