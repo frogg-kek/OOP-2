@@ -79,7 +79,7 @@
 
 2. **Įdiegimas**:
    - Atsisiųskite projektą:
-     git clone <https://github.com/frogg-kek/OOP>
+     git clone <https://github.com/frogg-kek/OOP-2>
 
    - Paleiskite `make` komandą
 
