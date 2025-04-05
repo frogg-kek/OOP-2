@@ -87,33 +87,80 @@ int main() {
             break;
         }
         case '5': {
-            nuskaitytiSugeneruotusFailus(failugen, failugenList, failugenDeque); // Populate all containers
+            nuskaitytiSugeneruotusFailus(failugen, failugenList, failugenDeque);
             if (!failugen.empty()) {
                 std::cout << "Pasirinkite kokį konteinerį naudoti (v - vector, l - list, d - deque): ";
                 char konteinerioPasirinkimas;
                 std::cin >> konteinerioPasirinkimas;
 
-                switch(konteinerioPasirinkimas){
-                    case 'v':
-                        for(const auto& failas : failugen){
-                            rusiotiStudentusISFailus(failas, failugen);
+                switch (konteinerioPasirinkimas) {
+                    case 'v': {
+                        if (!failugen.empty()) {
+                            std::cout << "Pasirinkite failą naudojimui:\n";
+                            for (size_t i = 0; i < failugen.size(); ++i) {
+                                std::cout << i + 1 << ". " << failugen[i] << "\n";
+                            }
+                            std::cout << "Pasirinkimas: ";
+                            int failoPasirinkimas;
+                            std::cin >> failoPasirinkimas;
+
+                            if (failoPasirinkimas >= 1 && failoPasirinkimas <= static_cast<int>(failugen.size())) {
+                                rusiotiStudentusISFailus(failugen[failoPasirinkimas - 1], failugen);
+                            } else {
+                                std::cout << "Neteisingas pasirinkimas!" << std::endl;
+                            }
+                        } else {
+                            std::cout << "Nėra failų vektoriuje." << std::endl;
                         }
                         break;
-                    case 'l':
-                        for(const auto& failas : failugenList){
-                            rusiotiStudentusISFailusList(failas, failugenList);
+                    }
+                    case 'l': {
+                        if (!failugenList.empty()) {
+                            std::cout << "Pasirinkite failą naudojimui:\n";
+                            int index = 1;
+                            for (const auto& failas : failugenList) {
+                                std::cout << index++ << ". " << failas << "\n";
+                            }
+                            std::cout << "Pasirinkimas: ";
+                            int failoPasirinkimas;
+                            std::cin >> failoPasirinkimas;
+
+                            if (failoPasirinkimas >= 1 && failoPasirinkimas <= static_cast<int>(failugenList.size())) {
+                                auto it = std::next(failugenList.begin(), failoPasirinkimas - 1);
+                                rusiotiStudentusISFailusList(*it, failugenList);
+                            } else {
+                                std::cout << "Neteisingas pasirinkimas!" << std::endl;
+                            }
+                        } else {
+                            std::cout << "Nėra failų sąraše." << std::endl;
                         }
                         break;
-                    case 'd':
-                        for(const auto& failas : failugenDeque){
-                            rusiotiStudentusISFailusDeque(failas, failugenDeque);
+                    }
+                    case 'd': {
+                        if (!failugenDeque.empty()) {
+                            std::cout << "Pasirinkite failą naudojimui:\n";
+                            for (size_t i = 0; i < failugenDeque.size(); ++i) {
+                                std::cout << i + 1 << ". " << failugenDeque[i] << "\n";
+                            }
+                            std::cout << "Pasirinkimas: ";
+                            int failoPasirinkimas;
+                            std::cin >> failoPasirinkimas;
+
+                            if (failoPasirinkimas >= 1 && failoPasirinkimas <= static_cast<int>(failugenDeque.size())) {
+                                rusiotiStudentusISFailusDeque(failugenDeque[failoPasirinkimas - 1], failugenDeque);
+                            } else {
+                                std::cout << "Neteisingas pasirinkimas!" << std::endl;
+                            }
+                        } else {
+                            std::cout << "Nėra failų deque." << std::endl;
                         }
                         break;
+                    }
                     default:
                         std::cout << "Neteisingas pasirinkimas!" << std::endl;
-                        return 1;
+                        break;
                 }
-                } else {
+            } else {
                 std::cout << "Nėra sugeneruotų failų testavimui." << std::endl;
             }
             break;

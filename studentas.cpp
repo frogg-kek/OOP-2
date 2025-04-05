@@ -12,6 +12,12 @@ Student::Student() : vardas(""), pavarde(""), nd_balai{}, egzaminas(0) {}
 Student::Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas)
     : vardas(vardas), pavarde(pavarde), nd_balai(nd), egzaminas(egzaminas) {}
 
+// Destruktorius
+Student::~Student() {
+    // Jei norėtum debug'int, kada studentas sunaikinamas:
+    std::cout << "Studentas sunaikintas: " << vardas << " " << pavarde << std::endl;
+}
+
 // Getteriai
 std::string Student::getVardas() const { return vardas; }
 std::string Student::getPavarde() const { return pavarde; }

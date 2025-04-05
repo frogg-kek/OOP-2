@@ -16,6 +16,9 @@ public:
     Student();
     Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas);
 
+    //Destruktorius
+    ~Student();
+
     // Getteriai
     std::string getVardas() const;
     std::string getPavarde() const;
