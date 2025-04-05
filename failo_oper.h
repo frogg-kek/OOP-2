@@ -12,6 +12,6 @@ std::vector<Student> nuskaitytiStudentus(const std::string& failoPavadinimas, do
 // Funkcijos rezultatų išvedimui
 void spausdintiRezultatus(const std::vector<Student>& studentai);
 void rasytiRezultatus(const std::string& failoPavadinimas, const std::vector<Student>& studentai);
-void pasirinktIšvestiesBuda(const std::vector<Student>& studentai);
+void pasirinktiIsvestiesBuda(const std::vector<Student>& studentai);
 
 #endif

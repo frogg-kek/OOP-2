@@ -79,7 +79,7 @@ int main() {
                 studentai = nuskaitytiStudentus(failuPavadinimai[failoPasirinkimas - 1], skaitymoLaikas);
                 std::cout << "Failo skaitymas užtruko: " << skaitymoLaikas << " sekundžių." << std::endl;
                 rikiuotiStudentusPagalPasirinkima(studentai);
-               // pasirinktIsvestiesBuda(studentai);
+                pasirinktiIsvestiesBuda(studentai);
             } else {
                 std::cout << "Neteisingas pasirinkimas!" << std::endl;
                 return 1;

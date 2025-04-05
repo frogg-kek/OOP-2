@@ -14,7 +14,6 @@ Student::Student(const std::string& vardas, const std::string& pavarde, const st
 
 // Destruktorius
 Student::~Student() {
-    // Jei norėtum debug'int, kada studentas sunaikinamas:
     //std::cout << "Studentas sunaikintas: " << vardas << " " << pavarde << std::endl;
 }
 
@@ -49,7 +48,7 @@ double Student::galutinisPazymys(bool naudotiVidurki) const {
     return 0.4 * ndRez + 0.6 * egzaminas;
 }
 
-// --- Pagalbinės funkcijos ---
+// Kitos funkcijos
 
 Student generuotiStudenta() {
     Student s;
@@ -147,7 +146,7 @@ std::vector<Student> ivestiStudentus() {
     return studentai;
 }
 
-// --- Rikiavimas ---
+// Rikiavimas
 
 bool palygintiPagalVarda(const Student& a, const Student& b) {
     return a.getVardas() < b.getVardas();
