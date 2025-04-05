@@ -2,39 +2,52 @@
 
 ## FAILŲ TYRIMŲ REZULTATAI SU 03 vėliavėlę:
 
-|        FAILAS          |              VEKTOR             |
+
+|        FAILAS          |       VECTOR(STRUCT) #3ST       |
 |------------------------|---------------------------------|
-| Gstudentai1000.txt     |       ![alt text](image.png)    |    
-| Gstudentai10000.txt    |       ![alt text](image-2.png)  |  
-| Gstudentai100000.txt   |       ![alt text](image-1.png)  |   
-| Gstudentai1000000.txt  |       ![alt text](image-3.png)  |   
-| Gstudentai10000000.txt |       ![alt text](image-4.png)  |    
+| Gstudentai100000.txt   |            0.197912             |   
+| Gstudentai1000000.txt  |            1.80717              |   
 
 
-|        FAILAS          |               LIST              |
+
+|        FAILAS          |       VECTOR(CLASS) #3ST        |
 |------------------------|---------------------------------|
-| Gstudentai1000.txt     |     ![alt text](image-5.png)    |   
-| Gstudentai10000.txt    |     ![alt text](image-6.png)    |   
-| Gstudentai100000.txt   |     ![alt text](image-7.png)    |   
-| Gstudentai1000000.txt  |     ![alt text](image-8.png)    |   
-| Gstudentai10000000.txt |     ![alt text](image-9.png)    |
+| Gstudentai100000.txt   |            0.132619             |   
+| Gstudentai1000000.txt  |            1.28624              | 
 
-|        FAILAS          |              DEQUE              |
+
+## FAILŲ TYRIMŲ REZULTATAI SU 02 vėliavėlę:
+
+
+|        FAILAS          |       VECTOR(STRUCT) #3ST       |
 |------------------------|---------------------------------|
-| Gstudentai1000.txt     |    ![alt text](image-10.png)    |   
-| Gstudentai10000.txt    |    ![alt text](image-11.png)    |   
-| Gstudentai100000.txt   |    ![alt text](image-12.png)    |   
-| Gstudentai1000000.txt  |    ![alt text](image-13.png)    |   
-| Gstudentai10000000.txt |    ![alt text](image-14.png)    |
+| Gstudentai100000.txt   |                      |   
+| Gstudentai1000000.txt  |                      |   
 
 
-|        FAILAS          |       OPTIMIZUOTAS VECTOR       |
+
+|        FAILAS          |       VECTOR(CLASS) #3ST        |
 |------------------------|---------------------------------|
-| Gstudentai1000.txt     |   ![alt text](image-15.png)     |   
-| Gstudentai10000.txt    |   ![alt text](image-16.png)     |   
-| Gstudentai100000.txt   |   ![alt text](image-17.png)     |   
-| Gstudentai1000000.txt  |   ![alt text](image-20.png)     |   
-| Gstudentai10000000.txt |   ![alt text](image-19.png)     |
+| Gstudentai100000.txt   |           0.138643              |   
+| Gstudentai1000000.txt  |           2.40901               | 
+
+
+## FAILŲ TYRIMŲ REZULTATAI SU 01 vėliavėlę:
+
+
+|        FAILAS          |       VECTOR(STRUCT) #3ST       |
+|------------------------|---------------------------------|
+| Gstudentai100000.txt   |                      |   
+| Gstudentai1000000.txt  |                      |   
+
+
+
+|        FAILAS          |       VECTOR(CLASS) #3ST        |
+|------------------------|---------------------------------|
+| Gstudentai100000.txt   |           0.133387              |   
+| Gstudentai1000000.txt  |           1.28121               | 
+
+
 
 
 ## Testavimo aplinka

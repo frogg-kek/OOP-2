@@ -15,7 +15,7 @@ Student::Student(const std::string& vardas, const std::string& pavarde, const st
 // Destruktorius
 Student::~Student() {
     // Jei norėtum debug'int, kada studentas sunaikinamas:
-    std::cout << "Studentas sunaikintas: " << vardas << " " << pavarde << std::endl;
+    //std::cout << "Studentas sunaikintas: " << vardas << " " << pavarde << std::endl;
 }
 
 // Getteriai

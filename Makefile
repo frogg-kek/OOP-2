@@ -1,7 +1,7 @@
 # makefile skirtas sukurti viena paleidziama faila
 
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -O3
+CXXFLAGS = -std=c++20 -Wall -O1
 
 TARGET = kursiokai
 
