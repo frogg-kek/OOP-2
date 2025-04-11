@@ -12,6 +12,11 @@ private:
     int egzaminas;
 
 public:
+    
+    friend std::istream& operator>>(std::istream& ivedimas, Student& s); // ivedimo operatorius
+    friend std::ostream& operator<<(std::ostream& isvedimas, const Student& s); // isvedimo operatorius
+
+
     // Konstruktoriai
     Student();
     //Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas);
