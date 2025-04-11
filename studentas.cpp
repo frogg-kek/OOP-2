@@ -17,6 +17,36 @@ Student::~Student() {
     //std::cout << "Studentas sunaikintas: " << vardas << " " << pavarde << std::endl;
     nd_balai.clear();
 }
+// Rule of five darymas
+Student::Student(const Student& kitas) : vardas(kitas.vardas), pavarde(kitas.pavarde), nd_balai(kitas.nd_balai), egzaminas(kitas.egzaminas) {
+    nd_balai = kitas.nd_balai;
+}
+Student& Student::operator=(const Student& kitas) {
+    if (this == &kitas) return *this; // savęs priskyrimas
+    
+    vardas = kitas.vardas;
+    pavarde = kitas.pavarde;
+    nd_balai = kitas.nd_balai;
+    egzaminas = kitas.egzaminas;
+
+    return *this;
+    
+}
+Student::Student(Student&& kitas) : vardas(std::move(kitas.vardas)), pavarde(std::move(kitas.pavarde)), nd_balai(std::move(kitas.nd_balai)), egzaminas(kitas.egzaminas) {
+    kitas.egzaminas = 0;
+}
+Student& Student::operator=(Student&& kitas) noexcept {
+    if (this != &kitas) {
+        vardas = std::move(kitas.vardas);
+        pavarde = std::move(kitas.pavarde);
+        nd_balai = std::move(kitas.nd_balai);
+        egzaminas = kitas.egzaminas;
+
+        kitas.egzaminas = 0; 
+    }
+    return *this;
+}
+
 
 // Getteriai
 std::string Student::getVardas() const { return vardas; }
