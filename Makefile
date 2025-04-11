@@ -5,7 +5,7 @@ CXXFLAGS = -std=c++20 -Wall -O3
 
 TARGET = kursiokai
 
-SRCS = main.cpp studentas.cpp failo_oper.cpp papild.cpp generavimasf.cpp testai.cpp ListO.cpp DequeO.cpp testavimas.cpp
+SRCS = main.cpp studentas.cpp failo_oper.cpp papild.cpp generavimasf.cpp testai.cpp ListO.cpp DequeO.cpp
 
 all:
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)

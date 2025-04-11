@@ -81,12 +81,7 @@ void spausdintiRezultatus(const std::vector<Student>& studentai) {
     std::cout << std::string(75, '-') << std::endl;
 
     for (const auto& s : studentai) {
-        std::cout << std::left
-                  << std::setw(15) << s.getVardas()
-                  << std::setw(15) << s.getPavarde()
-                  << std::fixed << std::setprecision(2)
-                  << std::setw(25) << s.galutinisPazymys(true)
-                  << s.galutinisPazymys(false) << std::endl;
+        std::cout << s << std::endl;
     }
 }
 
@@ -107,12 +102,7 @@ void rasytiRezultatus(const std::string& failoPavadinimas, const std::vector<Stu
     outFile << std::string(75, '-') << std::endl;
 
     for (const auto& s : studentai) {
-        outFile << std::left
-                << std::setw(15) << s.getVardas()
-                << std::setw(15) << s.getPavarde()
-                << std::fixed << std::setprecision(2)
-                << std::setw(25) << s.galutinisPazymys(true)
-                << s.galutinisPazymys(false) << std::endl;
+        outFile << s << std::endl;
     }
 }
 
