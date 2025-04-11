@@ -9,12 +9,13 @@
 // Konstruktoriai
 Student::Student() : vardas(""), pavarde(""), nd_balai{}, egzaminas(0) {}
 
-Student::Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas)
-    : vardas(vardas), pavarde(pavarde), nd_balai(nd), egzaminas(egzaminas) {}
+//Student::Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas)
+   // : vardas(vardas), pavarde(pavarde), nd_balai(nd), egzaminas(egzaminas) {}
 
 // Destruktorius
 Student::~Student() {
     //std::cout << "Studentas sunaikintas: " << vardas << " " << pavarde << std::endl;
+    nd_balai.clear();
 }
 
 // Getteriai

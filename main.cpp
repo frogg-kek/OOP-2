@@ -59,6 +59,17 @@ int main() {
             std::cout << "Kiek studentų norite sugeneruoti? ";
             std::cin >> studentuSk;
             studentai = generuotiStudentus(studentuSk);
+            std::cout << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavardė" << std::setw(25) << "Galutinis (Vidurkis)"
+            << "Galutinis (Mediana)" << std::endl;
+
+            std::cout << std::string(75, '-') << std::endl;
+
+        for (const auto& s : studentai) {
+            std::cout << std::left << std::setw(15) << s.getVardas()  << std::setw(15) << s.getPavarde() << std::fixed << std::setprecision(2)
+            << std::setw(25) << s.galutinisPazymys(true)
+            << s.galutinisPazymys(false) << std::endl;
+    }
+    //std::cout << studentai[5].getVardas() << std::endl; // patikra
             break;
         }
         case '3':

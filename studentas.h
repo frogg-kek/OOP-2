@@ -14,7 +14,7 @@ private:
 public:
     // Konstruktoriai
     Student();
-    Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas);
+    //Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas);
 
     //Destruktorius
     ~Student();
