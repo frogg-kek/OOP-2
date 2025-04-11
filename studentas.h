@@ -19,6 +19,12 @@ public:
     //Destruktorius
     ~Student();
 
+    Student(const Student& kitas); // copy konstruktorius
+    Student& operator=(const Student& kitas); // copy priskirimo operatorius
+
+    Student(Student&& kitas); // move konstruktorius
+    Student& operator=(Student&& kitas); // move priskirimo operatorius
+
     // Getteriai
     std::string getVardas() const;
     std::string getPavarde() const;
