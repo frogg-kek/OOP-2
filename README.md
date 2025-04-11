@@ -1,5 +1,8 @@
 # OOP
-## Executable failo dydis `213K`
+## Executable su O1 failo dydis `221KB`
+## Executable su O2 failo dydis `205KB`
+## Executable su O3 failo dydis `238KB`
+
 ## FAILŲ TYRIMŲ REZULTATAI SU 03 vėliavėlę:
 
 
