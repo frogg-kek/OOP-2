@@ -5,6 +5,62 @@
 #include <iostream>
 #include <random>
 #include <limits>
+#include <iomanip>
+
+std::istream& operator>>(std::istream& ivestis, Student& s) {
+    std::string vardas, pavarde;
+    std::vector<int> nd;
+    int balas, egz;
+
+    std::cout << "\nĮveskite studento vardą: ";
+    ivestis >> vardas;
+    while (!tikrintiRaides(vardas)) {
+        std::cerr << "Netinkamas vardas. Bandykite dar kartą: ";
+        ivestis >> vardas;
+    }
+    s.setVardas(vardas);
+
+    std::cout << "Įveskite studento pavardę: ";
+    ivestis >> pavarde;
+    while (!tikrintiRaides(pavarde)) {
+        std::cerr << "Netinkama pavardė. Bandykite dar kartą: ";
+        ivestis >> pavarde;
+    }
+    s.setPavarde(pavarde);
+
+    std::cout << "Įveskite namų darbų pažymius (baigti - ne skaičius): ";
+    while (ivestis >> balas) {
+        if (balas >= 0 && balas <= 10)
+            nd.push_back(balas);
+        else
+            std::cerr << "Netinkamas pažymys. Kartokite: ";
+    }
+
+    ivestis.clear();
+    ivestis.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    s.setNdBalai(nd);
+
+    std::cout << "Įveskite egzamino pažymį: ";
+    ivestis >> egz;
+    while (ivestis.fail() || egz < 0 || egz > 10) {
+        ivestis.clear();
+        ivestis.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cerr << "Netinkamas įrašas. Kartokite: ";
+        ivestis >> egz;
+    }
+    s.setEgzaminas(egz);
+
+    return ivestis;
+}
+
+std::ostream& operator<<(std::ostream& isvestis, const Student& s) {
+    
+    isvestis << std::left << std::setw(15) << s.getVardas() << std::setw(15) << s.getPavarde() 
+             << std::setw(25) << std::fixed << std::setprecision(2) << s.galutinisPazymys(true)
+             << std::fixed << std::setprecision(2) << s.galutinisPazymys(false) << std::endl;
+    
+             return isvestis;
+}
 
 // Konstruktoriai
 Student::Student() : vardas(""), pavarde(""), nd_balai{}, egzaminas(0) {}
@@ -35,7 +91,7 @@ Student& Student::operator=(const Student& kitas) {
 Student::Student(Student&& kitas) : vardas(std::move(kitas.vardas)), pavarde(std::move(kitas.pavarde)), nd_balai(std::move(kitas.nd_balai)), egzaminas(kitas.egzaminas) {
     kitas.egzaminas = 0;
 }
-Student& Student::operator=(Student&& kitas) noexcept {
+Student& Student::operator=(Student&& kitas) {
     if (this != &kitas) {
         vardas = std::move(kitas.vardas);
         pavarde = std::move(kitas.pavarde);
@@ -46,7 +102,6 @@ Student& Student::operator=(Student&& kitas) noexcept {
     }
     return *this;
 }
-
 
 // Getteriai
 std::string Student::getVardas() const { return vardas; }
@@ -122,58 +177,13 @@ std::vector<Student> generuotiStudentus(int kiekis) {
 std::vector<Student> ivestiStudentus() {
     std::vector<Student> studentai;
     char pasirinkimas;
-
     do {
         Student s;
-        std::string vardas, pavarde;
-        std::vector<int> nd;
-        int egz;
-
-        std::cout << "\nĮveskite studento vardą: ";
-        std::cin >> vardas;
-        while (!tikrintiRaides(vardas)) {
-            std::cerr << "Netinkamas vardas. Bandykite dar kartą: ";
-            std::cin >> vardas;
-        }
-        s.setVardas(vardas);
-
-        std::cout << "Įveskite studento pavardę: ";
-        std::cin >> pavarde;
-        while (!tikrintiRaides(pavarde)) {
-            std::cerr << "Netinkama pavardė. Bandykite dar kartą: ";
-            std::cin >> pavarde;
-        }
-        s.setPavarde(pavarde);
-
-        std::cout << "Įveskite namų darbų pažymius (baigti - ne skaičius): ";
-        int balas;
-        while (std::cin >> balas) {
-            if (balas >= 0 && balas <= 10) {
-                nd.push_back(balas);
-            } else {
-                std::cerr << "Blogas pažymys. Kartokite: ";
-            }
-        }
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        s.setNdBalai(nd);
-
-        std::cout << "Įveskite egzamino pažymį: ";
-        std::cin >> egz;
-        while (egz < 0 || egz > 10 || std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cerr << "Neteisingas įvestas balas. Kartokite: ";
-            std::cin >> egz;
-        }
-        s.setEgzaminas(egz);
-
+        std::cin >> s;
         studentai.push_back(s);
-
-        std::cout << "Ar norite pridėti dar vieną studentą? (y/n): ";
+        std::cout << "Ar norite įvesti kitą studentą? (y/n): ";
         std::cin >> pasirinkimas;
     } while (pasirinkimas == 'y' || pasirinkimas == 'Y');
-
     return studentai;
 }
 

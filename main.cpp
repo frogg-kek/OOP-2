@@ -74,6 +74,12 @@ int main() {
         }
         case '3':
             studentai = ivestiStudentus();
+            std::cout << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavardė" << std::setw(25) << "Galutinis (Vidurkis)"
+            << "Galutinis (Mediana)" << std::endl;
+            std::cout << std::string(75, '-') << std::endl;
+            for(const auto& s : studentai) {
+                std::cout << s << std::endl;
+            }
             break;
         case '4': {
             std::vector<std::string> failuPavadinimai = {
