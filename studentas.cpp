@@ -7,6 +7,7 @@
 #include <limits>
 #include <iomanip>
 
+
 std::istream& operator>>(std::istream& ivestis, Student& s) {
     std::string vardas, pavarde;
     std::vector<int> nd;
@@ -79,7 +80,6 @@ Student::Student(const Student& kitas) : vardas(kitas.vardas), pavarde(kitas.pav
 }
 Student& Student::operator=(const Student& kitas) {
     if (this == &kitas) return *this; // savęs priskyrimas
-    
     vardas = kitas.vardas;
     pavarde = kitas.pavarde;
     nd_balai = kitas.nd_balai;

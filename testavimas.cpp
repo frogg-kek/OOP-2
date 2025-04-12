@@ -3,6 +3,18 @@
 #include "studentas.h"
 #include <cmath>
 
+
+TEST_CASE("Studento konstruktorius") {
+    // Naudojame numatytąjį konstruktorių
+    Student s;
+
+    // Tikriname, ar laukai inicializuoti teisingai
+    CHECK(s.getVardas() == "");
+    CHECK(s.getPavarde() == "");
+    CHECK(s.getNdBalai().empty());
+    CHECK(s.getEgzaminas() == 0);
+}
+
 TEST_CASE("Studento set/get metodai") {
     Student s;
     s.setVardas("Jonas");
@@ -50,4 +62,52 @@ TEST_CASE("Kopijavimas ir priskyrimas") {
     CHECK(s2.getPavarde() == "B");
     CHECK(s2.getNdBalai() == std::vector<int>({1, 2, 3}));
     CHECK(s2.getEgzaminas() == 4);
+
+    Student s3;
+    s3 = s1;
+    CHECK(s3.getVardas() == "A");
+    CHECK(s3.getPavarde() == "B");
+    CHECK(s3.getNdBalai() == std::vector<int>({1, 2, 3}));
+    CHECK(s3.getEgzaminas() == 4);
+}
+
+TEST_CASE("Perkėlimas (move)") {
+    Student s1;
+    s1.setVardas("X");
+    s1.setPavarde("Y");
+    s1.setNdBalai({6, 7});
+    s1.setEgzaminas(8);
+
+    // Move konstruktorius
+    Student s2 = std::move(s1);
+    CHECK(s2.getVardas() == "X");
+    CHECK(s2.getPavarde() == "Y");
+    CHECK(s2.getNdBalai() == std::vector<int>({6, 7}));
+    CHECK(s2.getEgzaminas() == 8);
+
+    // Move priskyrimo operatorius
+    Student s3;
+    s3 = std::move(s2);
+    CHECK(s3.getVardas() == "X");
+    CHECK(s3.getPavarde() == "Y");
+    CHECK(s3.getNdBalai() == std::vector<int>({6, 7}));
+    CHECK(s3.getEgzaminas() == 8);
+}
+
+TEST_CASE("Išvestis su operatoriais") {
+    
+    Student s;
+    s.setVardas("Jonas");
+    s.setPavarde("Jonaitis");
+    s.setNdBalai({10, 9, 8, 0});
+    s.setEgzaminas(7);
+
+    std::ostringstream output;
+    output << s;
+
+    std::string result = output.str();
+    CHECK(result.find("Jonas") != std::string::npos);
+    CHECK(result.find("Jonaitis") != std::string::npos);
+    CHECK(result.find("7") != std::string::npos);
+     
 }
