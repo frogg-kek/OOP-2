@@ -15,7 +15,6 @@
      Įveskite studento pavardę: Jonaitis
      Įveskite namų darbų pažymius (baigti - ne skaičius): 8 9 10
      Įveskite egzamino pažymį: 9
-     
      ```
 
 2. **Automatinė įvestis**:
@@ -31,7 +30,6 @@
      ```
      Jonas Jonaitis 8 9 10 9
      Petras Petraitis 7 8 6 8
-     
      ```
 ### Papildoma informacija
 
