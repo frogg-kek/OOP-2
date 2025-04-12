@@ -1,4 +1,46 @@
 # OOP
+
+## Perdengtų metodų aprašymas
+
+Šiame projekte naudojami perdengti metodai, kurie leidžia patogiai dirbti su studentų duomenimis.
+
+### Duomenų įvestis
+
+1. **Rankinė įvestis**:
+   - Naudojamas perdengtas `operator>>` metodas, kuris leidžia patogiai įvesti studento duomenis iš standartinio įvesties srauto.
+   - Įvedimo metu tikrinama, ar vardas ir pavardė sudaryti tik iš raidžių, o pažymiai ir egzamino rezultatas yra tinkamo intervalo (0–10).
+   - Pavyzdys:
+     ```
+     Įveskite studento vardą: Jonas
+     Įveskite studento pavardę: Jonaitis
+     Įveskite namų darbų pažymius (baigti - ne skaičius): 8 9 10
+     Įveskite egzamino pažymį: 9
+     
+     ```
+
+2. **Automatinė įvestis**:
+   - Naudojama funkcija `generuotiStudentus`, kuri automatiškai sugeneruoja nurodytą kiekį studentų su atsitiktiniais vardais, pavardėmis, pažymiais ir egzamino rezultatais.
+   - Pavyzdys:
+     ```cpp
+     std::vector<Student> studentai = generuotiStudentus(100);
+     ```
+
+3. **Įvestis iš failo**:
+   - Naudojama funkcija `nuskaitytiStudentus`, kuri skaito studentų duomenis iš failo. Failo formatas turi atitikti numatytą struktūrą (vardas, pavardė, pažymiai, egzaminas).
+   - Pavyzdys:
+     ```
+     Jonas Jonaitis 8 9 10 9
+     Petras Petraitis 7 8 6 8
+     
+     ```
+### Papildoma informacija
+
+- **Destruktorius**:
+  - `Student::~Student` užtikrina, kad visi dinaminiai resursai (pvz., `nd_balai`) būtų tinkamai atlaisvinti.
+- **Konstruktoriai ir operatoriai**:
+  - Implementuota „penkių taisyklė“ (`Rule of Five`), įskaitant kopijavimo ir perkėlimo konstruktorius bei priskyrimo operatorius.
+
+
 ## Executable su O1 failo dydis `221KB`
 ## Executable su O2 failo dydis `205KB`
 ## Executable su O3 failo dydis `238KB`
