@@ -19,16 +19,17 @@ public:
 
     // Konstruktoriai
     Student();
-    //Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas);
+
+    // Rule of five
+    Student(const Student& kitas); // copy konstruktorius
+    Student& operator=(const Student& kitas); // copy priskirimo operatorius
 
     //Destruktorius
     ~Student();
 
-    Student(const Student& kitas); // copy konstruktorius
-    Student& operator=(const Student& kitas); // copy priskirimo operatorius
-
     Student(Student&& kitas); // move konstruktorius
     Student& operator=(Student&& kitas); // move priskirimo operatorius
+    // Rule of five pabaiga
 
     // Getteriai
     std::string getVardas() const;

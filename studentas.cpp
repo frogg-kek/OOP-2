@@ -66,18 +66,12 @@ std::ostream& operator<<(std::ostream& isvestis, const Student& s) {
 // Konstruktoriai
 Student::Student() : vardas(""), pavarde(""), nd_balai{}, egzaminas(0) {}
 
-//Student::Student(const std::string& vardas, const std::string& pavarde, const std::vector<int>& nd, int egzaminas)
-   // : vardas(vardas), pavarde(pavarde), nd_balai(nd), egzaminas(egzaminas) {}
+// --------------------------------------------------Rule of five darymas-------------------------------------------------------------------
 
-// Destruktorius
-Student::~Student() {
-    //std::cout << "Studentas sunaikintas: " << vardas << " " << pavarde << std::endl;
-    nd_balai.clear();
-}
-// Rule of five darymas
-Student::Student(const Student& kitas) : vardas(kitas.vardas), pavarde(kitas.pavarde), nd_balai(kitas.nd_balai), egzaminas(kitas.egzaminas) {
-    nd_balai = kitas.nd_balai;
-}
+// Copy konstruktorius
+Student::Student(const Student& kitas) : vardas(kitas.vardas), pavarde(kitas.pavarde), nd_balai(kitas.nd_balai), egzaminas(kitas.egzaminas) {}
+
+// Copy priskyrimo operatorius
 Student& Student::operator=(const Student& kitas) {
     if (this == &kitas) return *this; // savęs priskyrimas
     vardas = kitas.vardas;
@@ -88,9 +82,17 @@ Student& Student::operator=(const Student& kitas) {
     return *this;
     
 }
-Student::Student(Student&& kitas) : vardas(std::move(kitas.vardas)), pavarde(std::move(kitas.pavarde)), nd_balai(std::move(kitas.nd_balai)), egzaminas(kitas.egzaminas) {
-    kitas.egzaminas = 0;
+// Destruktorius
+Student::~Student() {
+    nd_balai.clear();
 }
+
+// Move konstruktorius
+Student::Student(Student&& kitas) : vardas(std::move(kitas.vardas)), pavarde(std::move(kitas.pavarde)), nd_balai(std::move(kitas.nd_balai)), egzaminas(kitas.egzaminas) {
+    kitas.egzaminas = 0; 
+}
+
+// Move priskyrimo operatorius
 Student& Student::operator=(Student&& kitas) {
     if (this != &kitas) {
         vardas = std::move(kitas.vardas);
@@ -102,6 +104,7 @@ Student& Student::operator=(Student&& kitas) {
     }
     return *this;
 }
+// -------------------------------------------------------Rule of five pabaiga-----------------------------------------------------------------
 
 // Getteriai
 std::string Student::getVardas() const { return vardas; }
