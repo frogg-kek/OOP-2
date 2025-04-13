@@ -46,6 +46,9 @@
 | ![Kopijavimo testai](image.png) | **Kopijavimo testai**: tikrina kopijavimo konstruktorių ir priskyrimo operatorių, kurie sukuria tikslias objektų kopijas išsaugant visus duomenis |  
 | ![Perkėlimo testai](image-1.png) | **Perkėlimo testai**: tikrina move konstruktorių ir priskyrimo operatorių, kurie efektyviai perkelia resursus iš vieno objekto į kitą |
 
+## Visų testų rezultatai
+![alt text](image-2.png)
+
 
 ## Executable su O1 failo dydis `221KB`
 ## Executable su O2 failo dydis `205KB`
