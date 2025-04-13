@@ -39,6 +39,14 @@
   - Implementuota „penkių taisyklė“ (`Rule of Five`), įskaitant kopijavimo ir perkėlimo konstruktorius bei priskyrimo operatorius.
 
 
+### *The Rule of five* Testai
+
+| Testo nuotrauka | Aprašymas |
+|-----------------|-----------|
+| ![Kopijavimo testai](image.png) | **Kopijavimo testai**: tikrina kopijavimo konstruktorių ir priskyrimo operatorių, kurie sukuria tikslias objektų kopijas išsaugant visus duomenis |  
+| ![Perkėlimo testai](image-1.png) | **Perkėlimo testai**: tikrina move konstruktorių ir priskyrimo operatorių, kurie efektyviai perkelia resursus iš vieno objekto į kitą |
+
+
 ## Executable su O1 failo dydis `221KB`
 ## Executable su O2 failo dydis `205KB`
 ## Executable su O3 failo dydis `238KB`
@@ -133,3 +141,4 @@
 
 4. **Valymas**:
      `make clean`
+````
