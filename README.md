@@ -39,7 +39,7 @@
   - Implementuota „penkių taisyklė“ (`Rule of Five`), įskaitant kopijavimo ir perkėlimo konstruktorius bei priskyrimo operatorius.
 
 
-### *The Rule of five* Testai
+### *The Rule of five* Testai atlikti su *doctest*
 
 | Testo nuotrauka | Aprašymas |
 |-----------------|-----------|
