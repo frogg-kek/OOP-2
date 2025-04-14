@@ -36,8 +36,9 @@ TEST_CASE("Skaičiavimai - vidurkis ir mediana") {
     double tikėtinasVidurkis = (5 + 7 + 9) / 3.0;
     double tikėtinaMediana = 7;
 
-    CHECK(std::abs(s.skaiciuotiVidurki() - tikėtinasVidurkis) < 1e-6);
-    CHECK(std::abs(s.skaiciuotiMediana() - tikėtinaMediana) < 1e-6);
+    CHECK(s.skaiciuotiVidurki() == doctest::Approx(tikėtinasVidurkis));
+    CHECK(s.skaiciuotiMediana() == doctest::Approx(tikėtinaMediana));
+
 }
 
 TEST_CASE("Galutinis pažymys") {
