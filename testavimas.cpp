@@ -111,3 +111,20 @@ TEST_CASE("Išvestis su operatoriais") {
     CHECK(result.find("7") != std::string::npos);
      
 }
+TEST_CASE("Destruktoriaus testavimas") {
+    
+    {
+        Student s;
+        s.setVardas("Test");
+        s.setPavarde("Testavicius");
+        s.setNdBalai({1, 2, 3});
+        s.setEgzaminas(5);
+
+        // Tikriname, ar teisingai
+        CHECK(s.getVardas() == "Test");
+        CHECK(s.getPavarde() == "Testavicius");
+        CHECK(s.getNdBalai() == std::vector<int>({1, 2, 3}));
+        CHECK(s.getEgzaminas() == 5);
+    }
+    // Jei destruktorius veikia teisingai, testas praeis be klaidų
+}
