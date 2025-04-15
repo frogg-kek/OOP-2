@@ -1,5 +1,51 @@
 # OOP
 
+## Projekto aprašymas su abstračia klasę
+
+Šis projektas yra skirtas objektinio programavimo principų demonstravimui, naudojant abstrakčią bazinę klasę `Zmogus` ir iš jos išvestinę klasę `Studentas`. Projektas apima įvairias funkcijas, tokias kaip duomenų įvedimas, apdorojimas, rūšiavimas ir testavimas.
+
+## Funkcionalumas su abstrakčia klasę
+
+1. **Abstrakti bazinė klasė `Zmogus`**:
+   - Aprašo bendras žmogaus savybes: vardą ir pavardę.
+   - Turi grynai virtualią funkciją `spausdintiInformacija`, kurią įgyvendina išvestinės klasės.
+
+2. **Išvestinė klasė `Studentas`**:
+   - Paveldi `Zmogus` klasę ir prideda papildomas savybes: namų darbų pažymius ir egzamino rezultatą.
+   - Implementuoja funkcijas:
+     - Vidurkio ir medianos skaičiavimas.
+     - Galutinio pažymio skaičiavimas.
+     - Duomenų išvedimas naudojant perdengtą `operator<<`.
+
+3. **Duomenų įvedimas**:
+   - Rankinė įvestis per konsolę.
+   - Automatinė įvestis naudojant atsitiktinių duomenų generavimą.
+   - Įvestis iš failo, kurio formatas turi būti tinkamai struktūruotas.
+
+4. **Testavimas**:
+   - Naudojama `doctest` biblioteka, kuri tikrina:
+     - Konstruktorius ir destruktorius.
+     - Kopijavimo ir perkėlimo operatorius (Rule of Five).
+     - Vidurkio, medianos ir galutinio pažymio skaičiavimą.
+     - Abstrakčios klasės funkcionalumą.
+
+5. **Failų apdorojimas**:
+   - Studentai rūšiuojami į „vargšiukus“ ir „kietiakus“ pagal jų galutinį pažymį.
+   - Rezultatai išsaugomi atskiruose failuose.
+
+
+## Testavimo rezultatai
+
+- Testai atlikti naudojant `doctest` biblioteką.
+- Tikrinamos šios funkcijos:
+  - Konstruktoriai ir destruktoriai.
+  - Kopijavimo ir perkėlimo operatoriai.
+  - Vidurkio, medianos ir galutinio pažymio skaičiavimas.
+  - Abstrakčios klasės funkcionalumas.
+
+
+
+
 ## Perdengtų metodų aprašymas
 
 Šiame projekte naudojami perdengti metodai, kurie leidžia patogiai dirbti su studentų duomenimis.
@@ -144,4 +190,3 @@
 
 4. **Valymas**:
      `make clean`
-````
