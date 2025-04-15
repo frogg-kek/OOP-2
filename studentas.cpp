@@ -64,21 +64,24 @@ std::ostream& operator<<(std::ostream& isvestis, const Student& s) {
 }
 
 // Konstruktoriai
-Student::Student() : vardas(""), pavarde(""), nd_balai{}, egzaminas(0) {}
+Student::Student() : egzaminas(0) {
+    setVardas("");
+    setPavarde("");
+    setNdBalai(std::vector<int>());
+}
+
 
 // --------------------------------------------------Rule of five darymas-------------------------------------------------------------------
 
 // Copy konstruktorius
-Student::Student(const Student& kitas) : vardas(kitas.vardas), pavarde(kitas.pavarde), nd_balai(kitas.nd_balai), egzaminas(kitas.egzaminas) {}
+Student::Student(const Student& kitas) : Zmogus(kitas), nd_balai(kitas.nd_balai), egzaminas(kitas.egzaminas) {}
 
 // Copy priskyrimo operatorius
 Student& Student::operator=(const Student& kitas) {
     if (this == &kitas) return *this; // savęs priskyrimas
-    vardas = kitas.vardas;
-    pavarde = kitas.pavarde;
+    Zmogus::operator=(kitas); // kviečiame bazinės klasės priskyrimo operatorių
     nd_balai = kitas.nd_balai;
     egzaminas = kitas.egzaminas;
-
     return *this;
     
 }
@@ -88,15 +91,14 @@ Student::~Student() {
 }
 
 // Move konstruktorius
-Student::Student(Student&& kitas) : vardas(std::move(kitas.vardas)), pavarde(std::move(kitas.pavarde)), nd_balai(std::move(kitas.nd_balai)), egzaminas(kitas.egzaminas) {
+Student::Student(Student&& kitas) : Zmogus(std::move(kitas)), nd_balai(std::move(kitas.nd_balai)), egzaminas(kitas.egzaminas) {
     kitas.egzaminas = 0; 
 }
 
 // Move priskyrimo operatorius
 Student& Student::operator=(Student&& kitas) {
     if (this != &kitas) {
-        vardas = std::move(kitas.vardas);
-        pavarde = std::move(kitas.pavarde);
+        Zmogus::operator=(std::move(kitas)); // kviečiame bazinės klasės priskyrimo operatorių
         nd_balai = std::move(kitas.nd_balai);
         egzaminas = kitas.egzaminas;
 

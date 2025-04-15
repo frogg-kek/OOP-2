@@ -3,6 +3,7 @@
 #include "papild.h"
 #include "ListO.h"
 #include "DequeO.h"
+#include "zmogus.h" 
 #include <iostream>
 #include <chrono>
 #include <vector>
@@ -45,6 +46,7 @@ int main() {
     std::cout << "3. Įvesti studentų duomenis ranka\n";
     std::cout << "4. Nuskaityti studentų duomenis iš failo\n";
     std::cout << "5. Testai su failais\n";
+    std::cout << "6. Žmogus klasės įrodymas\n";
     std::cout << "6. Baigti programą\n";
     std::cout << "Pasirinkimas: ";
     std::cin >> pasirinkimas;
@@ -180,7 +182,18 @@ int main() {
             }
             break;
         }
-        case '6':
+        case '6':{
+            // Zmogus z;  klaida neleidzia deklaruoti.
+            Zmogus* zmogus = new Student();  // Vyksta teisingai, nes Studentas paveldi Zmogus
+            zmogus->setVardas("Tomas");
+            zmogus->setPavarde("Petraitis");
+
+            // Atspausdinsime per Zmogus rodyklę
+            std::cout << "Studentas per Zmogus* paveldi: " << zmogus->getVardas() << " " << zmogus->getPavarde() << std::endl;
+
+    delete zmogus;
+        }
+        case '7': 
             return 0;
         default:
             std::cout << "Neteisingas pasirinkimas!" << std::endl;

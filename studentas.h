@@ -3,11 +3,10 @@
 
 #include <string>
 #include <vector>
+#include "zmogus.h"
 
-class Student {
+class Student : public Zmogus {
 private:
-    std::string vardas;
-    std::string pavarde;
     std::vector<int> nd_balai;
     int egzaminas;
 
