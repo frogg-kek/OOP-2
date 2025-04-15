@@ -183,7 +183,7 @@ int main() {
             break;
         }
         case '6':{
-            // Zmogus z;  klaida neleidzia deklaruoti.
+            //Zmogus z;  //klaida neleidzia deklaruoti.
             Zmogus* zmogus = new Student();  // Vyksta teisingai, nes Studentas paveldi Zmogus
             zmogus->setVardas("Tomas");
             zmogus->setPavarde("Petraitis");
