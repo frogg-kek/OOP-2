@@ -43,7 +43,13 @@
   - Vidurkio, medianos ir galutinio pažymio skaičiavimas.
   - Abstrakčios klasės funkcionalumas.
 
+![alt text](image-3.png)
 
+## Abstraktumo įrodymas
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
 
 
 ## Perdengtų metodų aprašymas
