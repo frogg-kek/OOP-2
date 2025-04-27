@@ -1,0 +1,72 @@
+\doxysection{studentas.\+h}
+\hypertarget{studentas_8h_source}{}\label{studentas_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STUDENTAS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STUDENTAS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}zmogus.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }Student\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_zmogus}{Zmogus}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00010\ \ \ \ \ std::vector<int>\ nd\_balai;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ egzaminas;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{friend}\ std::istream\&\ operator>>(std::istream\&\ ivedimas,\ Student\&\ s);\ \textcolor{comment}{//\ ivedimo\ operatorius}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ operator<<(std::ostream\&\ isvedimas,\ \textcolor{keyword}{const}\ Student\&\ s);\ \textcolor{comment}{//\ isvedimo\ operatorius}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Konstruktoriai}}
+\DoxyCodeLine{00020\ \ \ \ \ Student();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Rule\ of\ five}}
+\DoxyCodeLine{00023\ \ \ \ \ Student(\textcolor{keyword}{const}\ Student\&\ kitas);\ \textcolor{comment}{//\ copy\ konstruktorius}}
+\DoxyCodeLine{00024\ \ \ \ \ Student\&\ operator=(\textcolor{keyword}{const}\ Student\&\ kitas);\ \textcolor{comment}{//\ copy\ priskirimo\ operatorius}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//Destruktorius}}
+\DoxyCodeLine{00027\ \ \ \ \ \string~Student();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ Student(Student\&\&\ kitas);\ \textcolor{comment}{//\ move\ konstruktorius}}
+\DoxyCodeLine{00030\ \ \ \ \ Student\&\ operator=(Student\&\&\ kitas);\ \textcolor{comment}{//\ move\ priskirimo\ operatorius}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Rule\ of\ five\ pabaiga}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Getteriai}}
+\DoxyCodeLine{00034\ \ \ \ \ std::string\ getVardas()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ std::string\ getPavarde()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ std::vector<int>\ getNdBalai()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ getEgzaminas()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Setteriai}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ setVardas(\textcolor{keyword}{const}\ std::string\&\ vardas);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ setPavarde(\textcolor{keyword}{const}\ std::string\&\ pavarde);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ setNdBalai(\textcolor{keyword}{const}\ std::vector<int>\&\ nd);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ setEgzaminas(\textcolor{keywordtype}{int}\ egzaminas);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Kitos\ funkcijos}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{double}\ skaiciuotiVidurki()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{double}\ skaiciuotiMediana()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{double}\ galutinisPazymys(\textcolor{keywordtype}{bool}\ naudotiVidurki\ =\ \textcolor{keyword}{true})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ Funkcijos\ generavimui\ ir\ įvedimui\ (naudos\ viešus\ metodus)}}
+\DoxyCodeLine{00052\ \mbox{\hyperlink{class_student}{Student}}\ generuotiStudenta();}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ generuotiPazymius(\mbox{\hyperlink{class_student}{Student}}\&\ studentas);}
+\DoxyCodeLine{00054\ std::vector<Student>\ generuotiStudentus(\textcolor{keywordtype}{int}\ kiekis);}
+\DoxyCodeLine{00055\ std::vector<Student>\ ivestiStudentus();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ Rikiavimo\ funkcijos\ (naudojasi\ getteriais)}}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{bool}\ palygintiPagalVarda(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ b);}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{bool}\ palygintiPagalPavarde(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ b);}
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{bool}\ palygintiPagalVidurkiAsc(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ b);}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{bool}\ palygintiPagalVidurkiDesc(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ b);}
+\DoxyCodeLine{00062\ \textcolor{keywordtype}{bool}\ palygintiPagalMedianaAsc(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ b);}
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{bool}\ palygintiPagalMedianaDesc(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_student}{Student}}\&\ b);}
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ rikiuotiStudentus(std::vector<Student>\&\ studentai,\ \textcolor{keywordtype}{char}\ pasirinkimas,\ \textcolor{keywordtype}{char}\ tvarka\ =\ \textcolor{charliteral}{'a'});}
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{void}\ rikiuotiStudentusPagalPasirinkima(std::vector<Student>\&\ studentai);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
