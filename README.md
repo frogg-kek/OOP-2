@@ -1,5 +1,29 @@
 # OOP
 
+## 📌 Projekto versijų apžvalga
+
+### 🔸 v1.1
+- Pereita nuo `struct` prie `class`, siekiant geresnio objektinio programavimo palaikymo.
+- Atlikti optimizavimo testai su `-O1`, `-O2`, `-O3` vėliavėlėmis, kad būtų įvertintas našumo skirtumas tarp struktūrų ir klasių.
+- Tai buvo pradinis žingsnis į rimtesnę programos architektūrą.
+
+### 🔸 v1.2
+- Įgyvendinta pilnai inkapsuliuota `Studentas` klasė.
+- Pridėta "Rule of Five" palaikymas: kopijavimo konstruktorius, perkėlimo konstruktorius, kopijavimo ir perkėlimo priskyrimo operatoriai, destruktorius.
+- Sukurtas pagrindinis funkcionalumas, leidžiantis generuoti, įvesti ir apdoroti studentų duomenis.
+- Pradėtas naudoti išorinis antraštės ir implementacijos failų atskyrimas (`.h` ir `.cpp`).
+- Tai buvo pagrindinis struktūrinis pamatas tolimesniam projekto vystymui.
+
+### 🔸 v1.5
+- Įvesta abstrakti bazinė klasė `Zmogus`, iš kurios paveldima `Studentas` klasė.
+- Demonstruojamas paveldėjimas ir virtualių funkcijų veikimas.
+- Realizuotas polimorfizmas, leidžiantis dirbti su objektų kolekcijomis per bazinės klasės rodykles.
+- Projektas toliau laikosi "Rule of Five" ir geros praktikos principų.
+
+### 🔸 v2.0
+- Padaryta dokumentacija su `Doxygen`
+- Tobulinti programos testai su `doctest`
+
 ## Projekto aprašymas su abstračia klasę
 
 Šis projektas yra skirtas objektinio programavimo principų demonstravimui, naudojant abstrakčią bazinę klasę `Zmogus` ir iš jos išvestinę klasę `Studentas`. Projektas apima įvairias funkcijas, tokias kaip duomenų įvedimas, apdorojimas, rūšiavimas ir testavimas.
