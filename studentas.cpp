@@ -87,7 +87,8 @@ Student& Student::operator=(const Student& kitas) {
 }
 // Destruktorius
 Student::~Student() {
-    nd_balai.clear();
+    nd_balai.clear(); // išvalome vektorių
+    egzaminas = 0; // išvalome egzamino pažymį
 }
 
 // Move konstruktorius

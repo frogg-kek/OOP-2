@@ -145,9 +145,7 @@ void rusiotiStudentusISFailus(const std::string& failopavadinimas, std::vector<s
                 ++it;
             }
         }
-        end = std::chrono::high_resolution_clock::now();
-        duration = end - start;
-        std::cout << "Konteinerio skaidymas užtruko: " << duration.count() << " sekundžių." << std::endl;
+        
 
         // Rašome į failus
         std::ofstream vargsciukaiFile("vargsciukai_" + failopavadinimas);
@@ -162,15 +160,18 @@ void rusiotiStudentusISFailus(const std::string& failopavadinimas, std::vector<s
 
         vargsciukaiFile.close();
         kietiakaiFile.close();
+
+        end = std::chrono::high_resolution_clock::now();
+        duration = end - start;
+        std::cout << "Konteinerio skaidymas užtruko: " << duration.count() << " sekundžių." << std::endl;
+
     } else if (strategijosPasirinkimas == '3') {
         // Naudojant algoritmus
         start = std::chrono::high_resolution_clock::now();
         auto it = std::partition(studentai.begin(), studentai.end(), [](const Student& studentas) {
             return studentas.galutinisPazymys(true) < 5.0;
         });
-        end = std::chrono::high_resolution_clock::now();
-        duration = end - start;
-        std::cout << "Algoritmų naudojimas užtruko: " << duration.count() << " sekundžių." << std::endl;
+        
 
         // Rašome į failus
         std::ofstream vargsciukaiFile("vargsciukai_" + failopavadinimas);
@@ -185,6 +186,11 @@ void rusiotiStudentusISFailus(const std::string& failopavadinimas, std::vector<s
 
         vargsciukaiFile.close();
         kietiakaiFile.close();
+
+        end = std::chrono::high_resolution_clock::now();
+        duration = end - start;
+        std::cout << "Algoritmų naudojimas užtruko: " << duration.count() << " sekundžių." << std::endl;
+
     }
 
     // Pašaliname panaudotą failą iš sąrašo
