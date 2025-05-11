@@ -31,6 +31,7 @@ create_app: all
 
 	# Sukuriam Info.plist
 	echo '<?xml version="1.0" encoding="UTF-8"?>' > $(APP_DIR)/Info.plist
+	echo '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' >> $(APP_DIR)/Info.plist
 	echo '<plist version="1.0">' >> $(APP_DIR)/Info.plist
 	echo '<dict>' >> $(APP_DIR)/Info.plist
 	echo '  <key>CFBundleName</key>' >> $(APP_DIR)/Info.plist
@@ -42,6 +43,12 @@ create_app: all
 	echo '</dict>' >> $(APP_DIR)/Info.plist
 	echo '</plist>' >> $(APP_DIR)/Info.plist
 
+dmg: create_app
+	@echo "Kuriamas DMG failas..."
+	hdiutil create -volname "Kursiokai" -srcfolder "$(APP_NAME)" -ov -format UDZO -fs HFS+ Kursiokai.dmg
+	@echo "✅ Kursiokai.dmg sukurtas!"
+
 clean:
 	rm -f $(TARGET)
 	rm -rf $(APP_NAME)
+	rm -f Kursiokai.dmg
